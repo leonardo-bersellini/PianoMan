@@ -11,6 +11,12 @@
 #include "tunes.h"
 #include "player.h"
 
+/*
+ *  PIANIST
+ *  Il pianista del progetto. Il suo compito è quello di riprodurre la musica
+ *  assegnatali. può eseguire più linee musicali contemporaneamente.
+ */
+
 class Pianist 
 {
 public:

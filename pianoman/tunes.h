@@ -30,4 +30,9 @@ std::map<Tune, std::string> tunes_source =
 //durata dei file di risorsa
 inline const std::chrono::seconds tune_duration = std::chrono::seconds(1);
 
+struct MusicSheet {
+    std::vector<Tune> line_one;
+    std::vector<Tune> line_two;
+};
+
 #endif //TUNES_H

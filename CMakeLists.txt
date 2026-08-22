@@ -10,9 +10,17 @@ find_package(SFML 2.6.2 COMPONENTS graphics window system audio REQUIRED)
 add_executable(PianoMan
     main.cpp
 
+    pianoman/tunes.h
+    
     pianoman/pianist/pianist.h 
     pianoman/pianist/player.h
-    pianoman/pianist/tunes.h
+
+    pianoman/composer/composer.h
+    pianoman/composer/tokens.h
+
+    pianoman/composer/lexer/lexer.h
+    pianoman/composer/parser/parser.h
+    pianoman/composer/generator/generator.h
 )
 
 target_include_directories(PianoMan PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
