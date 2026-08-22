@@ -11,26 +11,30 @@
 class Parser 
 {
 public:
-    std::vector<Stmt> parseProgram(const std::vector<Token> tokens) 
+    MusicSheetAst parseProgram(const std::vector<Token> tokens) 
     {
         this->tokens = tokens;
         index = 0;
 
-        auto currentTkn = tokens.at(index);
+        while(index < tokens.size()) 
+        {
+            expect(Token::NewLine);
+            sheet_ast.lineOne.push_back(parseLine());
+            sheet_ast.lineTwo.push_back(parseLine());
+            expect(Token::EndLine);
+        }
 
-        expect(Token::NewLine);
-        void parseLine();
-        expect(Token::EndLine);
+        return sheet_ast;
     }
 
 private:
     std::vector<Token> tokens;
     std::size_t index;
 
-    std::vector<Stmt> stmts;
+    MusicSheetAst sheet_ast;
 
     Token advance() {
-        if(index > tokens.size()) return tokens.back();
+        if(index >= tokens.size()) throw std::runtime_error("advance in parser exceeded tokens size");
         auto t = tokens.at(index);
         index++;
 
@@ -38,6 +42,7 @@ private:
     }
 
     Token peek(const int i = 0) const {
+        if(index >= tokens.size()) throw std::runtime_error("peek in parser reached tokens at size + 1");
         return tokens.at(index +i);
     }
 
@@ -54,34 +59,39 @@ private:
             }
     }
 
-    void parseLine() 
+    LineStmt parseLine() 
     {
         expect(Token::StartLine);
         
-        while(index < tokens.size() || peek() == Token::StartLine || peek() == Token::EndLine) 
+        LineStmt line; 
+
+        while(index < tokens.size() && peek() != Token::StartLine && peek() != Token::EndLine) 
         {
             if(peek() == Token::LParent) {
+                expect(Token::LParent);
                 expectTune();
                 TuneStmt s;
                 s.tune = advance();
                 s.duration = TuneDuration::Semplice;
-                stmts.push_back(s);
+                line.tunes.push_back(s);
                 expect(Token::RParent);
             }
             else if(peek() == Token::LBracket) {
+                expect(Token::LParent);
                 expectTune();
                 TuneStmt s;
                 s.tune = advance();
                 s.duration = TuneDuration::Lunga;
-                stmts.push_back(s);
+                line.tunes.push_back(s);
                 expect(Token::RBracket);
             }
             else if(peek() == Token::LBrace) {
+                expect(Token::LParent);
                 expectTune();
                 TuneStmt s;
                 s.tune = advance();
                 s.duration = TuneDuration::Croma;
-                stmts.push_back(s);
+                line.tunes.push_back(s);
                 expect(Token::RBrace);
             }
             else throw std::runtime_error("error: unexpected token in line");
@@ -89,6 +99,8 @@ private:
         }
 
         if(index > tokens.size()) throw std::runtime_error("Expected endline before end of file");
+
+        return line;
     }
 };
 

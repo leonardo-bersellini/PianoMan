@@ -27,7 +27,7 @@ public:
             if(!b.loadFromFile(src)) {
                 throw std::runtime_error("errore nel caricamento di " + src);
             }
-            std::cout << "tune caricato" << std::endl;
+            std::cout << "[pianist] tune caricato" << std::endl;
 
             m_notes.insert({tune, std::move(b)});
         }
@@ -38,6 +38,10 @@ public:
     void play(const int& player_id, const std::vector<Tune>& tunes) 
     {
         // traduce ogni tune in soundbuffer e li delega ad un player
+
+        std::cout << "[pianist] received tunes: ";
+        for(const auto& t : tunes) {std::cout << static_cast<int>(t) << " ";}
+        std::cout << std::endl;
 
         std::vector<const sf::SoundBuffer*> sounds;
         sounds.reserve(tunes.size()); 

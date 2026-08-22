@@ -2,6 +2,7 @@
 #define AST_H
 
 #include <vector>
+#include <array>
 
 #include "tokens.h"
 
@@ -16,9 +17,10 @@ public:
     virtual ~Stmt() = default;
 };
 
-class MusicSheetAst : public Stmt {
+class TuneStmt : public Stmt {
 public:
-    std::vector<LineStmt> lines;
+    Token tune;
+    TuneDuration duration;
 };
 
 class LineStmt : public Stmt {
@@ -26,10 +28,10 @@ public:
     std::vector<TuneStmt> tunes;
 };
 
-class TuneStmt : public Stmt {
+class MusicSheetAst : public Stmt {
 public:
-    Token tune;
-    TuneDuration duration;
+    std::vector<LineStmt> lineOne;
+    std::vector<LineStmt> lineTwo;
 };
 
 #endif //AST_H

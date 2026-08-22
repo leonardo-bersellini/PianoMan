@@ -10,6 +10,7 @@
 
 #include "lexer/lexer.h"
 #include "parser/parser.h"
+#include "generator/generator.h"
 
 /*
  *  COMPOSER
@@ -80,20 +81,28 @@ public:
             sheet.append(line + "\n");
         }
 
+        std::cout << "[composer] source text: " << sheet << std::endl;
+
         Lexer lexer;
-        auto tokens = lexer.analiseSheet(sheet);
+        const auto& tokens = lexer.analiseSheet(sheet);
+
+        std::cout << "[composer] lexer done" << std::endl;
 
         Parser parser;
-        auto stmts = parser.parseProgram(tokens);
+        const auto& musicAst = parser.parseProgram(tokens);
 
+        std::cout << "[composer] parser done" << std::endl;
 
+        Generator generator;
+        const auto& music_sheet = generator.generateMusic(musicAst);
 
+        std::cout << "[composer] generator done" << std::endl;
 
+        std::cout << "[composer] music sheet: line one: " << music_sheet.line_one.size() << std::endl;
+        std::cout << "[composer] music sheet: line two: " << music_sheet.line_two.size() << std::endl;
+
+        return music_sheet;
     }
-
-private:
-
-
 };
 
 

@@ -27,14 +27,34 @@ enum class Token
 };
 
 std::unordered_map<Token, std::string> keywords = {
-    {Token::Do, "Do"},
-    {Token::Re, "Re"},
-    {Token::Mi, "Mi"},
-    {Token::Fa, "Fa"},
-    {Token::Sol, "Sol"},
-    {Token::La, "La"},
-    {Token::Si, "Si"},
+    {Token::Do, "DO"},
+    {Token::Re, "RE"},
+    {Token::Mi, "MI"},
+    {Token::Fa, "FA"},
+    {Token::Sol, "SOL"},
+    {Token::La, "LA"},
+    {Token::Si, "SI"}
 };
+
+std::string tokenToString(Token t)
+{
+    switch(t) {
+        case Token::Do: return "Do";
+        case Token::Re: return "Re";
+        case Token::Mi: return "Mi";
+        case Token::Fa: return "Fa";
+        case Token::Sol: return "Sol";
+        case Token::La: return "La";
+        case Token::Si: return "Si";
+        case Token::LParent: return "(";
+        case Token::RParent: return ")";
+        case Token::StartLine: return "start-line";
+        case Token::NewLine: return "newline";
+        case Token::EndLine: return "endline";
+    }
+
+    return "unknown";
+}
 
 
 
