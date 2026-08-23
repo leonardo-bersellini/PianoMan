@@ -27,7 +27,10 @@ public:
             if(!b.loadFromFile(src)) {
                 throw std::runtime_error("errore nel caricamento di " + src);
             }
-            std::cout << "[pianist] tune caricato" << std::endl;
+
+            #ifdef DEBUG_MACRO
+                std::cout << "[pianist] tune caricato" << std::endl;
+            #endif
 
             m_notes.insert({tune, std::move(b)});
         }
@@ -39,9 +42,11 @@ public:
     {
         // traduce ogni tune in soundbuffer e li delega ad un player
 
-        std::cout << "[pianist] received tunes: ";
-        for(const auto& n : note) {std::cout << static_cast<int>(n.first) << " ";}
-        std::cout << std::endl;
+        #ifdef DEBUG_MACRO
+            std::cout << "[pianist] received tunes: ";
+            for(const auto& n : note) {std::cout << static_cast<int>(n.first) << " ";}
+            std::cout << std::endl;
+        #endif
 
         std::vector<std::pair<const sf::SoundBuffer*, TuneDuration>> sounds;
         sounds.reserve(note.size()); 
@@ -56,10 +61,6 @@ public:
         }
 
         m_players.at(player_id).play(std::move(sounds));
-    }
-
-    void setPlayerPitch(const int& player_id, float pitch) {
-        m_players.at(player_id).setPitch(pitch);
     }
 
 

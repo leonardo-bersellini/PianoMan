@@ -61,6 +61,12 @@
  *
  */
 
+#ifdef DEBUG_MACRO
+    #define debug(...) do {std::cout << "[DEBUG] " << __VA_ARGS__ << std::endl;} while(0)
+#else 
+    #define debug(...) do {} while (0)
+#endif
+
 class Composer
 {
 public:
@@ -81,25 +87,25 @@ public:
             sheet.append(line + "\n");
         }
 
-        std::cout << "[composer] source text: " << sheet << std::endl;
+        debug("[composer] source text: " << sheet);
 
         Lexer lexer;
         const auto& tokens = lexer.analiseSheet(sheet);
 
-        std::cout << "[composer] lexer done" << std::endl;
+        debug("[composer] lexer done");
 
         Parser parser;
         const auto& musicAst = parser.parseProgram(tokens);
 
-        std::cout << "[composer] parser done" << std::endl;
+        debug("[composer] parser done");
 
         Generator generator;
         const MusicSheet& music_sheet = generator.generateMusic(musicAst);
 
-        std::cout << "[composer] generator done" << std::endl;
+        debug("[composer] generator done");
 
-        std::cout << "[composer] music sheet: line one: " << music_sheet.line_one.size() << std::endl;
-        std::cout << "[composer] music sheet: line two: " << music_sheet.line_two.size() << std::endl;
+        debug("[composer] music sheet: line one: " << music_sheet.line_one.size());
+        debug("[composer] music sheet: line two: " << music_sheet.line_two.size());
 
         return music_sheet;
     }

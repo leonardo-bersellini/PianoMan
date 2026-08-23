@@ -78,11 +78,13 @@ public:
             }
         }
 
+    #ifdef DEBUG_MACRO
         std::cout << "[lexer] tokens: ";
         for(const auto& t : m_tokens) {
-            std::cout << tokenToString(t);
+            std::cout << " " << tokenToString(t) << " ";
         }
         std::cout << std::endl;
+    #endif
 
         return m_tokens;
     }

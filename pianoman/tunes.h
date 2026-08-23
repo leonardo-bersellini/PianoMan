@@ -26,13 +26,13 @@ enum class TuneDuration {
     Croma
 };
 
-std::unordered_map<TuneDuration, float> duration_factor = {
+inline std::unordered_map<TuneDuration, float> duration_factor = {
     {TuneDuration::Semplice, 1.0},
     {TuneDuration::Lunga, 2.0},
     {TuneDuration::Croma, 0.5}
 };
 
-std::map<Tune, std::string> tunes_source =
+inline std::map<Tune, std::string> tunes_source =
 {
     {Tune::Do,  "assets/do-c.ogg"},
     {Tune::Re,  "assets/re-d.ogg"},
@@ -48,7 +48,7 @@ inline constexpr std::chrono::seconds tune_source_duration = std::chrono::second
 
 //fattore di velocità di riproduzione.
 //modificando questa variabile si modifica il valore di un tempo.
-inline constexpr float speed_scale = 1.5;
+inline constexpr float speed_scale = 2;
 
 struct MusicSheet {
     std::vector<std::pair<Tune, TuneDuration>> line_one;

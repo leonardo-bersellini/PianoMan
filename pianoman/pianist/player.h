@@ -57,6 +57,7 @@ public:
     void setPitch(const float pitch) {
         m_sound.setPitch(pitch);
     }
+
     
 private:
     sf::Sound m_sound;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(PianoMen LANGUAGES CXX)
+project(PianoMan LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -22,6 +22,19 @@ add_executable(PianoMan
     pianoman/composer/parser/parser.h
     pianoman/composer/generator/generator.h
 )
+
+target_compile_definitions(PianoMan PRIVATE
+    $<$<CONFIG:Debug>:DEBUG_MACRO>
+    $<$<CONFIG:Release>:RELEASE_MACRO>
+)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release") 
+    set(EXE_NAME "PianoMan")
+else()
+    set(EXE_NAME "PianoMan_DEBUG")
+endif()
+
+set_target_properties(PianoMan PROPERTIES OUTPUT_NAME "${EXE_NAME}")
 
 target_include_directories(PianoMan PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 

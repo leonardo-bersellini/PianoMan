@@ -1,0 +1,9 @@
+#LINE
+- (MI) (MI) (FA) (SOL) (SOL) (FA) (MI) (RE) [DO]
+- (DO) (DO) (DO) (MI)  (MI)  (DO) (DO) (SOL) [SOL]
+#ENDLINE
+
+#LINE
+- (DO) (DO) (RE) (MI) {MI} /( (RE) [RE]
+- (DO) (DO) (SOL) (DO) {DO} /( (SOL) [SOL]
+#ENDLINE

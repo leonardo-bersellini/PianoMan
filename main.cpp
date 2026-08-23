@@ -20,6 +20,7 @@ int main()
 {
     Pianist pianist;
 
+#ifdef DEBUG_MACRO
     std::cout << "testing..." << std::endl;
     std::vector<std::pair<Tune, TuneDuration>> test = {
         {Tune::Do, TuneDuration::Semplice}, 
@@ -27,6 +28,7 @@ int main()
         {Tune::Fa, TuneDuration::Croma}
     };
     pianist.play(0, test);
+#endif
 
     Composer composer;
 
@@ -35,9 +37,6 @@ int main()
     std::cin >> path;
 
     const auto& music = composer.generateFromMusicSheet(path);
-
-    pianist.setPlayerPitch(0, 3.5);
-    pianist.setPlayerPitch(1, 3.5);
     
     pianist.play(0, music.line_one);
     pianist.play(1, music.line_two);

@@ -1,0 +1,29 @@
+#LINE
+- (MI) (MI) (FA) (SOL)  (SOL) (FA) (MI) (RE)  (DO) (DO) (RE) (MI)  {MI} (RE) [RE]
+- (DO) (DO) (DO) (MI)   (MI)  (DO) (DO) (SI)  (SOL) (SOL) (SOL) (DO) {DO} (SI) [SOL]
+#ENDLINE
+
+#LINE
+- (RE) (RE) (MI) (DO)  (RE) {MI} {FA} (MI) (DO)  (RE) (DO) [SOL]
+- (SOL) (SOL) (DO) (SOL) (FA) {MI} {RE} (DO) (SOL) (SOL) (SOL) [DO]
+#ENDLINE
+
+#LINE
+- (MI) (MI) (FA) (SOL)  (SOL) (FA) (MI) (RE)  (DO) (DO) (RE) (MI)  /( (RE) /[
+- (DO) (DO) (DO) (MI)   (MI)  (DO) (DO) (SI)  (SOL) (SOL) (SOL) (DO) /( (SI) /[
+#ENDLINE
+
+#LINE
+- (RE) (RE) (MI) (DO)  (RE) (MI) [DO]
+- (SOL) (SOL) (DO) (SOL) (FA) (MI) [DO]
+#ENDLINE
+
+#LINE
+- {MI} {FA} {SOL} {LA}  [SOL] // (FA) {MI} {RE} {DO}  [RE] //
+- {DO} {DO} {MI} {DO}   [SOL] // (MI) {DO} {SOL} {DO} [SOL] //
+#ENDLINE
+
+#LINE
+- (SOL) (LA) (SOL) (FA)  (MI) (RE) (DO) /( (RE) (MI) [DO]
+- (MI) (FA) (MI) (RE)   (DO) (SI) (SOL) /( (SOL) (DO) [DO]
+#ENDLINE
