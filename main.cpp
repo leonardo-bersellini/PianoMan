@@ -21,7 +21,11 @@ int main()
     Pianist pianist;
 
     std::cout << "testing..." << std::endl;
-    std::vector<Tune> test = {Tune::Do, Tune::Re, Tune::Mi};
+    std::vector<std::pair<Tune, TuneDuration>> test = {
+        {Tune::Do, TuneDuration::Semplice}, 
+        {Tune::Re, TuneDuration::Lunga},
+        {Tune::Fa, TuneDuration::Croma}
+    };
     pianist.play(0, test);
 
     Composer composer;

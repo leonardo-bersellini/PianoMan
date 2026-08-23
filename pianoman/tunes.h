@@ -2,8 +2,10 @@
 #define TUNES_H
 
 #include <map>
+#include <unordered_map>
 #include <string>
 #include <chrono>
+#include <utility>
 
 enum class Tune
 {
@@ -14,6 +16,20 @@ enum class Tune
     Sol,
     La,
     Si,
+    Pausa
+};
+
+//il fattore di durata effettivo è calcolato in player
+enum class TuneDuration {
+    Semplice,
+    Lunga,
+    Croma
+};
+
+std::unordered_map<TuneDuration, float> duration_factor = {
+    {TuneDuration::Semplice, 1.0},
+    {TuneDuration::Lunga, 2.0},
+    {TuneDuration::Croma, 0.5}
 };
 
 std::map<Tune, std::string> tunes_source =
@@ -28,11 +44,15 @@ std::map<Tune, std::string> tunes_source =
 };
 
 //durata dei file di risorsa
-inline const std::chrono::seconds tune_duration = std::chrono::seconds(1);
+inline constexpr std::chrono::seconds tune_source_duration = std::chrono::seconds(1);
+
+//fattore di velocità di riproduzione.
+//modificando questa variabile si modifica il valore di un tempo.
+inline constexpr float speed_scale = 1;
 
 struct MusicSheet {
-    std::vector<Tune> line_one;
-    std::vector<Tune> line_two;
+    std::vector<std::pair<Tune, TuneDuration>> line_one;
+    std::vector<std::pair<Tune, TuneDuration>> line_two;
 };
 
 #endif //TUNES_H

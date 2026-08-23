@@ -5,12 +5,7 @@
 #include <array>
 
 #include "tokens.h"
-
-enum class TuneDuration {
-    Semplice,
-    Lunga,
-    Croma
-};
+#include "tunes.h"
 
 class Stmt {
 public:

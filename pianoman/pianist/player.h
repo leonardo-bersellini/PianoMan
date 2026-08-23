@@ -5,6 +5,7 @@
 
 #include <thread>
 #include <vector>
+#include <chrono>
 
 class Player 
 {
@@ -18,17 +19,27 @@ public:
     Player(const Player&) = delete;
     Player& operator=(const Player&) = delete;
     
-    void play(std::vector<const sf::SoundBuffer*> sounds) 
+    void play(std::vector<std::pair<const sf::SoundBuffer*, TuneDuration>> sounds) 
     {
         stop(); //ferma un esecuzione se in corso
 
         m_thread = std::thread([this, sounds = std::move(sounds)]() {
-            for(const auto* s : sounds) 
+            for(const auto& s : sounds) 
             {
-                if(!s) continue;
-                m_sound.setBuffer(*s);
-                m_sound.play();
-                waitForFinished();
+                
+                if(!s.first) {
+                    // se il soundbuffer è nullptr, è una pausa
+                    auto durata = std::chrono::duration_cast<std::chrono::milliseconds>(
+                        std::chrono::duration<float>(tune_source_duration) * duration_factor[s.second] / speed_scale
+                    );
+                    std::this_thread::sleep_for(durata);
+                } else {
+                    //altrimenti si calcola la durata ed il suono della nota
+                    m_sound.setBuffer(*s.first);
+                    m_sound.setPitch(speed_scale / duration_factor[s.second]);
+                    m_sound.play();
+                    waitForFinished();
+                }
             }
         });
     }

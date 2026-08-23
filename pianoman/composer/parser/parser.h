@@ -94,6 +94,24 @@ private:
                 line.tunes.push_back(s);
                 expect(Token::RBrace);
             }
+            else if(peek() == Token::PausaSemplice) {
+                TuneStmt s;
+                s.tune = Token::PausaSemplice;
+                s.duration = TuneDuration::Semplice;
+                line.tunes.push_back(s);
+            }
+            else if(peek() == Token::PausaLunga) {
+                TuneStmt s;
+                s.tune = Token::PausaLunga;
+                s.duration = TuneDuration::Lunga;
+                line.tunes.push_back(s);
+            }
+            else if(peek() == Token::PausaCroma) {
+                TuneStmt s;
+                s.tune = Token::PausaCroma;
+                s.duration = TuneDuration::Croma;
+                line.tunes.push_back(s);
+            }
             else throw std::runtime_error("error: unexpected token in line");
             
         }

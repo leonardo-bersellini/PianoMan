@@ -14,6 +14,10 @@ enum class Token
     La,
     Si,
 
+    PausaSemplice,
+    PausaLunga,
+    PausaCroma,
+
     LParent,
     RParent,
     LBracket,

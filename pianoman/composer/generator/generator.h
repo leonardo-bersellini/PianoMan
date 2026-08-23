@@ -13,7 +13,6 @@ public:
     MusicSheet generateMusic(const MusicSheetAst& ast) 
     {
         //le linee saranno due, ma salvate in segmenti in un vettore
-        //nota: tune.duration adesso viene ignorata.
 
         std::cout << "[generator] music-sheet-ast: statements line one: " << ast.lineOne.size() << std::endl;
         std::cout << "[generator] music-sheet-ast: statements line two: " << ast.lineTwo.size() << std::endl;
@@ -23,7 +22,7 @@ public:
         {
             for(const auto& tune : line.tunes) 
             {
-                sheet.line_one.push_back(tokenToTune(tune.tune));
+                sheet.line_one.push_back({tokenToTune(tune.tune), tune.duration});
             }
         }
 
@@ -32,7 +31,7 @@ public:
         {
             for(const auto& tune : line.tunes)
             {
-                sheet.line_two.push_back(tokenToTune(tune.tune));
+                sheet.line_two.push_back({tokenToTune(tune.tune), tune.duration});
             }
         }
 
@@ -52,6 +51,9 @@ private:
             case Token::Sol: return Tune::Sol;
             case Token::La: return Tune::La;
             case Token::Si: return Tune::Si;
+            case Token::PausaCroma:
+            case Token::PausaLunga:
+            case Token::PausaSemplice: return Tune::Pausa; 
             default: 
                 throw std::runtime_error("internal error: this token is not a tune [function token-to-tune]");
                 break;

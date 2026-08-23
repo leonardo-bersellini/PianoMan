@@ -94,7 +94,7 @@ public:
         std::cout << "[composer] parser done" << std::endl;
 
         Generator generator;
-        const auto& music_sheet = generator.generateMusic(musicAst);
+        const MusicSheet& music_sheet = generator.generateMusic(musicAst);
 
         std::cout << "[composer] generator done" << std::endl;
 

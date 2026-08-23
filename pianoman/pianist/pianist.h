@@ -35,19 +35,20 @@ public:
 
     ~Pianist() = default;
 
-    void play(const int& player_id, const std::vector<Tune>& tunes) 
+    void play(const int& player_id, const std::vector<std::pair<Tune, TuneDuration>>& note) 
     {
         // traduce ogni tune in soundbuffer e li delega ad un player
 
         std::cout << "[pianist] received tunes: ";
-        for(const auto& t : tunes) {std::cout << static_cast<int>(t) << " ";}
+        for(const auto& n : note) {std::cout << static_cast<int>(n.first) << " ";}
         std::cout << std::endl;
 
-        std::vector<const sf::SoundBuffer*> sounds;
-        sounds.reserve(tunes.size()); 
+        std::vector<std::pair<const sf::SoundBuffer*, TuneDuration>> sounds;
+        sounds.reserve(note.size()); 
 
-        for(const auto& t : tunes) {
-            sounds.push_back(&m_notes.at(t));
+        for(const auto& n : note) {
+            //si passano al player le note con la rispettiva durata
+            sounds.push_back({&m_notes.at(n.first), n.second});
         }
 
         m_players.at(player_id).play(std::move(sounds));

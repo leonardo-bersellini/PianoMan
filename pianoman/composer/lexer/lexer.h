@@ -55,6 +55,21 @@ public:
                 m_tokens.push_back(Token::StartLine);
                 advance();
             }
+            else if(c == '/') {
+                if(peek(1) == '/') {
+                    m_tokens.push_back(Token::PausaSemplice);
+                    advance();
+                }
+                else if(peek(1) == '[') {
+                    m_tokens.push_back(Token::PausaLunga);
+                    advance();
+                }
+                else if(peek(1) == '(') {
+                    m_tokens.push_back(Token::PausaCroma);
+                    advance();
+                }
+                else throw std::runtime_error("Invalid / token: " + c + peek(1));
+            }
             else {
                 m_tokens.push_back(checkKeyword());
             }
@@ -62,7 +77,7 @@ public:
 
         std::cout << "[lexer] tokens: ";
         for(const auto& t : m_tokens) {
-            std::cout << tokenToString(t) << std::endl;
+            std::cout << tokenToString(t);
         }
         std::cout << std::endl;
 
