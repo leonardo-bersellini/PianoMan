@@ -48,7 +48,11 @@ public:
 
         for(const auto& n : note) {
             //si passano al player le note con la rispettiva durata
-            sounds.push_back({&m_notes.at(n.first), n.second});
+            sf::SoundBuffer* note;
+            if(n.first == Tune::Pausa) note = nullptr;
+            else note = &m_notes.at(n.first);
+            
+            sounds.push_back({note, n.second});
         }
 
         m_players.at(player_id).play(std::move(sounds));

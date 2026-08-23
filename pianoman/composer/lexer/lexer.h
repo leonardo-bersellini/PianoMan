@@ -59,13 +59,16 @@ public:
                 if(peek(1) == '/') {
                     m_tokens.push_back(Token::PausaSemplice);
                     advance();
+                    advance();
                 }
                 else if(peek(1) == '[') {
                     m_tokens.push_back(Token::PausaLunga);
                     advance();
+                    advance();
                 }
                 else if(peek(1) == '(') {
                     m_tokens.push_back(Token::PausaCroma);
+                    advance();
                     advance();
                 }
                 else throw std::runtime_error("Invalid / token: " + c + peek(1));

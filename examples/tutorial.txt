@@ -1,0 +1,13 @@
+# Questo music sheet non può essere suonato, perchè non riuscirebbe ad essere compilato per via di questi commenti
+# Funge quindi da tutorial e spiegazione per scrivere un music sheet.
+
+ES: SCALA DI DO CENTRALE:
+
+#LINE                                          -> questa macro indica l'inizio di una linea di spartito
+- (DO) (RE) (MI) (FA) (SOL) (LA) (SI) (DO)     -> note della scala, tutte lunghe 1.
+- //    //   //   //   //   //    //   //      -> la seconda mano nonfa nulla
+#ENDLINE                                       -> fine della linea.
+#LINE             -> con altre macro si può unire un'altra line
+- (DO) (RE) (MI)
+- (MI) (RE) (DO)  -> la seconda mano suona insieme alla prima
+#ENDLINE

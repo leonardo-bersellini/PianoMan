@@ -77,7 +77,7 @@ private:
                 expect(Token::RParent);
             }
             else if(peek() == Token::LBracket) {
-                expect(Token::LParent);
+                expect(Token::LBracket);
                 expectTune();
                 TuneStmt s;
                 s.tune = advance();
@@ -86,7 +86,7 @@ private:
                 expect(Token::RBracket);
             }
             else if(peek() == Token::LBrace) {
-                expect(Token::LParent);
+                expect(Token::LBrace);
                 expectTune();
                 TuneStmt s;
                 s.tune = advance();
@@ -99,18 +99,21 @@ private:
                 s.tune = Token::PausaSemplice;
                 s.duration = TuneDuration::Semplice;
                 line.tunes.push_back(s);
+                advance();
             }
             else if(peek() == Token::PausaLunga) {
                 TuneStmt s;
                 s.tune = Token::PausaLunga;
                 s.duration = TuneDuration::Lunga;
                 line.tunes.push_back(s);
+                advance();
             }
             else if(peek() == Token::PausaCroma) {
                 TuneStmt s;
                 s.tune = Token::PausaCroma;
                 s.duration = TuneDuration::Croma;
                 line.tunes.push_back(s);
+                advance();
             }
             else throw std::runtime_error("error: unexpected token in line");
             

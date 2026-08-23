@@ -55,6 +55,9 @@ std::string tokenToString(Token t)
         case Token::StartLine: return "start-line";
         case Token::NewLine: return "newline";
         case Token::EndLine: return "endline";
+        case Token::PausaSemplice: return "pausa semplice";
+        case Token::PausaLunga: return "pausa lunga";
+        case Token::PausaCroma: return "pausa croma";
     }
 
     return "unknown";

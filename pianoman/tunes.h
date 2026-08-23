@@ -48,7 +48,7 @@ inline constexpr std::chrono::seconds tune_source_duration = std::chrono::second
 
 //fattore di velocità di riproduzione.
 //modificando questa variabile si modifica il valore di un tempo.
-inline constexpr float speed_scale = 1;
+inline constexpr float speed_scale = 1.5;
 
 struct MusicSheet {
     std::vector<std::pair<Tune, TuneDuration>> line_one;
